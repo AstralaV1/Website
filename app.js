@@ -592,4 +592,5 @@
 
   applySettings(false);
   initReveals();
+  root.classList.add("js-ready");
 })();

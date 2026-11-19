@@ -33,6 +33,15 @@ window.WORKBENCH_PROJECTS = [
 /* Newest first. The first entry is marked “Latest” in the panel. */
 window.WORKBENCH_CHANGELOG = [
   {
+    version: "1.1.1",
+    date: "Nov 19, 2026",
+    title: "Fresh start, every time",
+    items: [
+      "Added version tags to the CSS, data, and script files so browsers always load the matching version after an update.",
+      "Added a safety net that shows the page content even if a script fails to start, instead of leaving a blank screen."
+    ]
+  },
+  {
     version: "1.1.0",
     date: "Nov 19, 2026",
     title: "A tighter workbench",

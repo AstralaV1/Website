@@ -98,6 +98,11 @@ push these files to a repository, then set **Settings → Pages → Deploy from 
 branch** to the root of your default branch. Netlify Drop, Cloudflare Pages, or
 any static host will work the same way.
 
+When you edit the site, bump the `?v=` number on the stylesheet and both scripts
+in `index.html` (for example `?v=1.1.1` → `?v=1.1.2`). That tells browsers to
+fetch the new files instead of using a cached copy, which is what prevents an
+update from showing a blank or half-broken page.
+
 ## Accessibility notes
 
 - Home/Projects links and the skip link are keyboard accessible
