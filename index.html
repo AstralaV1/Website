@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-accent="violet" data-motion="full">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A workbench for all of my projects — finished, in progress, and just ideas for now.">
+  <meta name="theme-color" content="#09090d">
+  <title>My Workbench — Projects by Lucas</title>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500..800&family=Inter:wght@400..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    // Apply saved appearance before the first paint so the page never flashes.
+    (function () {
+      var root = document.documentElement;
+      var settings = {};
+      try { settings = JSON.parse(localStorage.getItem("workbench.settings") || "{}"); } catch (error) {}
+      var theme = settings.theme === "light" || settings.theme === "dark" ? settings.theme : "system";
+      var accent = ["violet", "blue", "teal", "rose", "amber"].indexOf(settings.accent) > -1 ? settings.accent : "violet";
+      var reduce = typeof settings.reducedMotion === "boolean"
+        ? settings.reducedMotion
+        : window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var dark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+      root.setAttribute("data-theme", dark ? "dark" : "light");
+      root.setAttribute("data-theme-pref", theme);
+      root.setAttribute("data-accent", accent);
+      root.setAttribute("data-motion", reduce ? "reduced" : "full");
+      root.classList.add("js");
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#home">Skip to content</a>
+
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#home" aria-label="My Workbench — back to the top">
+        <span class="brand-my">My&nbsp;</span><span>Workbench</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Sections">
+        <a class="nav-link" href="#home" data-section="home">Home</a>
+        <a class="nav-link" href="#projects" data-section="projects">Projects</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="changelog-trigger" id="changelogTrigger" type="button"
+                aria-haspopup="dialog" aria-expanded="false" aria-controls="changelogPopover"
+                aria-label="Open changelog">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M9.94 15.5a2 2 0 0 0-1.44-1.44l-6.13-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0l1.58 6.14a2 2 0 0 0 1.44 1.44l6.14 1.58a.5.5 0 0 1 0 .96l-6.14 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0Z"/>
+            <path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>
+          </svg>
+          <span class="trigger-label">Changelog</span>
+          <span class="update-dot" id="updateDot" aria-hidden="true" hidden></span>
+        </button>
+
+        <button class="menu-trigger" id="settingsTrigger" type="button"
+                aria-label="Quick settings" aria-haspopup="dialog" aria-expanded="false"
+                aria-controls="settingsPanel">
+          <svg class="icon icon-menu" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal style="--delay:0ms">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span>Hey, I&rsquo;m <span id="heroName">Lucas</span> &mdash; welcome to the workbench.</span>
+        </p>
+
+        <h1 id="hero-title" data-reveal style="--delay:60ms">
+          All my <span class="accent-text">projects</span>, in one place.
+        </h1>
+
+        <p class="lede" data-reveal style="--delay:120ms">
+          Things I&rsquo;m making. Some are finished, some are half-built,
+          and a few are just ideas for now.
+        </p>
+
+        <div class="hero-actions" data-reveal style="--delay:180ms">
+          <a class="btn btn-primary" href="#projects">
+            Browse projects
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 5v14"/><path d="m19 12-7 7-7-7"/>
+            </svg>
+          </a>
+          <button class="btn btn-ghost" type="button" data-open-changelog>
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/>
+            </svg>
+            What&rsquo;s new
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about-card" data-reveal>
+          <div class="about-copy">
+            <p class="kicker">The workbench</p>
+            <h2 id="about-title">A home for everything I build.</h2>
+            <p>
+              Some of these projects are finished, some are half-built, and a few
+              are just notes for later. No deadlines &mdash; just a place to keep
+              track of what I&rsquo;m making.
+            </p>
+            <p class="about-hint">
+              Pick something below, or come back later. The list keeps growing.
+            </p>
+          </div>
+
+          <div class="numbers-card">
+            <div class="numbers-head">
+              <span>At a glance</span>
+              <span id="updatedLabel">Updated November 2026</span>
+            </div>
+            <div class="number-grid">
+              <div>
+                <strong id="statTotal">6</strong>
+                <span>projects</span>
+              </div>
+              <div>
+                <strong id="statActive">2</strong>
+                <span>in progress</span>
+              </div>
+              <div>
+                <strong id="statPlanned">3</strong>
+                <span>planned</span>
+              </div>
+            </div>
+            <div class="status-bar" id="statusBar" aria-hidden="true"></div>
+            <p class="numbers-note">A little of everything, all in one place.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <div>
+            <p class="kicker">The collection</p>
+            <h2 id="projects-title">Projects</h2>
+          </div>
+          <p class="section-note" id="projectsNote">6 projects &middot; updated November 2026</p>
+        </div>
+
+        <div class="filter-row" data-reveal style="--delay:60ms">
+          <div class="filters" id="filters" role="group" aria-label="Filter projects by status"></div>
+          <p class="filter-count" id="filterCount" aria-live="polite">Showing 6 of 6</p>
+        </div>
+
+        <div class="project-grid" id="projectGrid"></div>
+        <p class="empty-state" id="emptyState" hidden>
+          Nothing here yet. Try another filter.
+        </p>
+
+        <noscript>
+          <p class="empty-state">Enable JavaScript to see the project list.</p>
+        </noscript>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>
+        &copy; <span id="year">2026</span> <span id="footerName">Lucas</span>.
+        <span class="footer-note" id="footerNote">Built by hand, one section at a time.</span>
+      </p>
+      <div class="footer-links">
+        <button class="text-btn" type="button" data-open-changelog>Changelog</button>
+        <a class="back-top" href="#home">
+          Back to top
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared dimmer for the settings drawer and changelog. -->
+  <div class="scrim" id="scrim" aria-hidden="true"></div>
+
+  <!-- Quick settings -->
+  <aside class="drawer" id="settingsPanel" role="dialog" aria-modal="true"
+         aria-labelledby="settingsTitle" aria-hidden="true" inert>
+    <div class="drawer-head">
+      <div>
+        <p class="kicker">Make it yours</p>
+        <h2 id="settingsTitle">Quick settings</h2>
+      </div>
+      <button class="icon-btn" type="button" data-close-overlay aria-label="Close settings">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="drawer-body">
+      <section class="setting-group" aria-labelledby="themeLabel">
+        <h3 id="themeLabel">Theme</h3>
+        <div class="theme-grid" role="radiogroup" aria-labelledby="themeLabel">
+          <button class="theme-option" type="button" role="radio" data-theme-option="dark" aria-checked="true">
+            <span class="theme-preview theme-preview--dark" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+            <span class="theme-label">Dark</span>
+          </button>
+          <button class="theme-option" type="button" role="radio" data-theme-option="light" aria-checked="false">
+            <span class="theme-preview theme-preview--light" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+            <span class="theme-label">Light</span>
+          </button>
+          <button class="theme-option" type="button" role="radio" data-theme-option="system" aria-checked="false">
+            <span class="theme-preview theme-preview--system" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+            <span class="theme-label">System</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="setting-group" aria-labelledby="accentLabel">
+        <div class="setting-label-row">
+          <h3 id="accentLabel">Accent</h3>
+          <span class="setting-value" id="accentName">Violet</span>
+        </div>
+        <div class="accent-row" role="radiogroup" aria-labelledby="accentLabel">
+          <button class="accent-swatch" type="button" role="radio" data-accent-option="violet"
+                  aria-checked="true" aria-label="Violet" style="--swatch:#a78bfa">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+          </button>
+          <button class="accent-swatch" type="button" role="radio" data-accent-option="blue"
+                  aria-checked="false" aria-label="Blue" style="--swatch:#7db2ff">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+          </button>
+          <button class="accent-swatch" type="button" role="radio" data-accent-option="teal"
+                  aria-checked="false" aria-label="Teal" style="--swatch:#4fd6c3">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+          </button>
+          <button class="accent-swatch" type="button" role="radio" data-accent-option="rose"
+                  aria-checked="false" aria-label="Rose" style="--swatch:#fb8fc3">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+          </button>
+          <button class="accent-swatch" type="button" role="radio" data-accent-option="amber"
+                  aria-checked="false" aria-label="Amber" style="--swatch:#f4c05f">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="setting-group">
+        <div class="setting-row">
+          <div>
+            <h3 id="motionLabel">Reduce motion</h3>
+            <p class="setting-desc">Turn off scroll reveals, hover lifts, and panel animations.</p>
+          </div>
+          <button class="switch" id="motionToggle" type="button" role="switch"
+                  aria-checked="false" aria-labelledby="motionLabel"></button>
+        </div>
+      </section>
+
+      <div class="drawer-foot">
+        <button class="btn btn-ghost btn-block" id="resetSettings" type="button">Reset to defaults</button>
+        <p class="fineprint">Saved on this device. Nothing leaves your browser.</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Changelog popover, anchored to the corner -->
+  <div class="changelog-popover" id="changelogPopover" role="dialog" aria-modal="true"
+       aria-labelledby="changelogTitle" aria-hidden="true" inert>
+    <div class="changelog-head">
+      <div>
+        <p class="kicker">Update log</p>
+        <h2 id="changelogTitle">What&rsquo;s new</h2>
+      </div>
+      <button class="icon-btn" type="button" data-close-overlay aria-label="Close changelog">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="changelog-body">
+      <div class="changelog-list" id="changelogList"></div>
+
+      <div class="changelog-next">
+        <div class="next-head">
+          <h3>Next up</h3>
+          <span>Not promised, just pondering.</span>
+        </div>
+        <ul id="upNextList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
