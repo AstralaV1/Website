@@ -4,9 +4,8 @@
    ------------------------------------------------------------------ */
 
 window.WORKBENCH_SITE = {
-  name: "Lucas",
-  updated: "November 2026",
-  footerNote: "Built by hand, one section at a time."
+  name: "Astrala",
+  updated: "November 2026"
 };
 
 /* status: "In progress" | "Planned" | "Shipped"
@@ -28,43 +27,21 @@ window.WORKBENCH_PROJECTS = [
     icon: "pickaxe",
     description: "My own Minecraft client with the settings and features I actually want.",
     year: "2026"
-  },
-  {
-    title: "This Workbench",
-    status: "In progress",
-    category: "Website",
-    icon: "layout",
-    description: "The site you’re looking at — a home for every project and every half-formed idea.",
-    year: "2026"
-  },
-  {
-    title: "Discord Bot",
-    status: "In progress",
-    category: "Bot",
-    icon: "bot",
-    description: "A small helper for my servers: a few handy commands and a lot of tinkering.",
-    year: "2025"
-  },
-  {
-    title: "Pixel Art Studio",
-    status: "Planned",
-    category: "Web app",
-    icon: "palette",
-    description: "A tiny browser tool for drawing sprites, palettes, and simple animations.",
-    year: "2026"
-  },
-  {
-    title: "Weather Dashboard",
-    status: "Shipped",
-    category: "Web app",
-    icon: "cloud",
-    description: "A calm little dashboard for the forecast, built to learn a new weather API.",
-    year: "2025"
   }
 ];
 
 /* Newest first. The first entry is marked “Latest” in the panel. */
 window.WORKBENCH_CHANGELOG = [
+  {
+    version: "1.1.0",
+    date: "Nov 19, 2026",
+    title: "A tighter workbench",
+    items: [
+      "Renamed the workbench owner to Astrala.",
+      "Trimmed the list to the Video Game Launcher and Minecraft Client — the Discord bot, pixel art studio, weather dashboard, and placeholder workbench are gone.",
+      "Cleared out the v0.9.0 note, the “Next up” block, and the footer tagline."
+    ]
+  },
   {
     version: "1.0.0",
     date: "Nov 19, 2026",
@@ -74,20 +51,5 @@ window.WORKBENCH_CHANGELOG = [
       "Dark, light, and system themes with five accent colors.",
       "Project filters, quick settings, and a changelog in the corner."
     ]
-  },
-  {
-    version: "0.9.0",
-    date: "Nov 12, 2026",
-    title: "A first sketch",
-    items: [
-      "Early layout and a first pass at the project cards.",
-      "A simple two-column grid to test the idea."
-    ]
   }
-];
-
-window.WORKBENCH_UP_NEXT = [
-  "A detail page for each project",
-  "Search across the whole workbench",
-  "A proper about page — when I get around to it"
 ];

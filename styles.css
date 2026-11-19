@@ -913,8 +913,6 @@ svg { flex: none; }
   font-size: 0.765rem;
 }
 
-.footer-note { margin-left: 5px; }
-
 .footer-links {
   display: flex;
   align-items: center;
@@ -1305,7 +1303,7 @@ svg { flex: none; }
   overscroll-behavior: contain;
 }
 
-.changelog-list { padding: 4px 20px 0; }
+.changelog-list { padding: 4px 20px 10px; }
 
 .log-entry {
   padding: 18px 0;
@@ -1385,59 +1383,6 @@ svg { flex: none; }
   border-radius: 50%;
   background: var(--accent);
   opacity: 0.7;
-}
-
-.changelog-next {
-  margin: 4px 20px 18px;
-  padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: 11px;
-  background: color-mix(in oklab, var(--surface) 65%, transparent);
-}
-
-.next-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 6px 12px;
-  margin-bottom: 10px;
-}
-
-.next-head h3 {
-  color: var(--text-soft);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
-.next-head span {
-  color: var(--faint);
-  font-size: 0.66rem;
-}
-
-.changelog-next ul {
-  display: grid;
-  gap: 7px;
-  list-style: none;
-}
-
-.changelog-next li {
-  position: relative;
-  padding-left: 15px;
-  color: var(--muted);
-  font-size: 0.745rem;
-  line-height: 1.5;
-}
-
-.changelog-next li::before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-size: 0.7rem;
-  opacity: 0.75;
 }
 
 /* ---------- Responsive ---------- */
@@ -1529,7 +1474,6 @@ svg { flex: none; }
 
   .changelog-list { padding-inline: 18px; }
   .changelog-head { padding-inline: 18px; }
-  .changelog-next { margin-inline: 18px; }
 }
 
 /* ---------- Motion preferences ---------- */

@@ -29,7 +29,6 @@
     });
   });
   const changelog = window.WORKBENCH_CHANGELOG || [];
-  const upNext = window.WORKBENCH_UP_NEXT || [];
   const latestVersion = changelog.length ? String(changelog[0].version) : "";
 
   const root = document.documentElement;
@@ -185,9 +184,6 @@
     document.getElementById("heroName").textContent = SITE.name;
     document.getElementById("footerName").textContent = SITE.name;
   }
-  if (SITE.footerNote) {
-    document.getElementById("footerNote").textContent = SITE.footerNote;
-  }
   if (SITE.updated) {
     document.getElementById("updatedLabel").textContent = "Updated " + SITE.updated;
     projectsNote.textContent = projects.length + (projects.length === 1 ? " project · " : " projects · ") + "updated " + SITE.updated;
@@ -280,7 +276,11 @@
 
   /* ---------- Filters ---------- */
 
-  filtersEl.innerHTML = FILTERS.map(function (filter) {
+  const visibleFilters = FILTERS.filter(function (filter) {
+    return filter === "All" || counts[filter] > 0;
+  });
+
+  filtersEl.innerHTML = visibleFilters.map(function (filter) {
     const count = filter === "All" ? projects.length : counts[filter];
     return '<button class="filter" type="button" data-filter="' + escapeHtml(filter) + '"' +
       ' aria-pressed="' + String(filter === activeFilter) + '">' +
@@ -317,7 +317,6 @@
   /* ---------- Changelog ---------- */
 
   const changelogList = document.getElementById("changelogList");
-  const upNextList = document.getElementById("upNextList");
 
   if (changelog.length) {
     changelogList.innerHTML = changelog.map(function (entry, index) {
@@ -338,10 +337,6 @@
   } else {
     changelogList.innerHTML = '<p class="empty-state">No updates logged yet.</p>';
   }
-
-  upNextList.innerHTML = upNext.map(function (item) {
-    return "<li>" + escapeHtml(item) + "</li>";
-  }).join("");
 
   function changelogUnseen() {
     return Boolean(latestVersion) && storeGet(SEEN_KEY) !== latestVersion;

@@ -1,8 +1,8 @@
 # My Workbench
 
-A small, scrolling portfolio site for keeping all of my projects in one place.
-Dark and light themes, five accent colours, a quick-settings drawer, project
-filters, and a changelog tucked into the top corner.
+A small, scrolling portfolio site for keeping all of Astrala's projects in one
+place. Dark and light themes, five accent colours, a quick-settings drawer,
+project filters, and a changelog tucked into the top corner.
 
 No frameworks, no build step, no dependencies to install. Just HTML, CSS, and
 JavaScript.
@@ -41,9 +41,8 @@ Most day-to-day editing happens in `data.js`.
 
 ```js
 window.WORKBENCH_SITE = {
-  name: "Lucas",
-  updated: "November 2026",
-  footerNote: "Built by hand, one section at a time."
+  name: "Astrala",
+  updated: "November 2026"
 };
 ```
 
@@ -64,17 +63,15 @@ Add an object to `WORKBENCH_PROJECTS`:
 ```
 
 The counts at the top, the filters, and the "Showing x of y" label all update
-automatically. If you use an icon name that doesn't exist, a cube is used as a
-fallback.
+automatically. Only statuses that currently have a project get a filter chip, so
+the row stays tidy as the list changes. If you use an icon name that doesn't
+exist, a cube is used as a fallback.
 
-### Changelog and "Next up"
+### Changelog
 
 `WORKBENCH_CHANGELOG` is newest-first. The first entry is labelled **Latest**,
 and an unread dot appears next to the Changelog button until the panel has been
 opened once on that device.
-
-`WORKBENCH_UP_NEXT` is the short list shown at the bottom of the changelog
-panel. Edit or empty it as you like.
 
 ### Copy
 
